@@ -13,6 +13,12 @@ regular code pushing
 
 git init
 git add .
+<<<<<<< HEAD
 git commit -m "Your message while pushing the codes in github"
 git branch -m main
 git push -u origin main
+=======
+git commit -m "Your message while pushing the codes in github" "List and ListComprehension"
+git branch -m main
+git push -u original main
+>>>>>>> 713c7c1577f3cf15a375fcfabfae99eafc212c95

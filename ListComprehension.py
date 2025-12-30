@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # numbers = [1,2,3,4,5,6,7,8,9,10]
+=======
+numbers = [1,2,3,4,5,6,7,8,9,10]
+>>>>>>> 713c7c1577f3cf15a375fcfabfae99eafc212c95
 
 # square_list = [i**2 for i in numbers]
 # cube_list = [i**3 for i in numbers]
@@ -16,6 +20,7 @@
 # newlist.sort(reverse=True)
 # print(newlist)
 
+<<<<<<< HEAD
 # birds = ["Sparrow", "Eagle", "Parrot", "Pigeon", "Peacock", "Owl"]
 # newlist = [i.upper() for i in birds]
 # newlist2 = [i.lower() for i in birds]
@@ -37,3 +42,10 @@ for i in animals:
 
 length_list = [len(i) for i in animals]
 print(length_list)
+=======
+birds = ["Sparrow", "Eagle", "Parrot", "Pigeon", "Peacock", "Owl"]
+newlist = [i.upper() for i in birds]
+newlist2 = [i.lower() for i in birds]
+print(newlist)
+print(newlist2)
+>>>>>>> 713c7c1577f3cf15a375fcfabfae99eafc212c95

@@ -55,9 +55,13 @@ Tuple:
 ordered, unchangeable, allows duplication numbers, syntax (), methods are not available, accessing the value is fast, data are secured here then list
 
 Sets:
+<<<<<<< HEAD
 unordered, unchangeable, doesn't allow duplication numbers, syntax {}, methods are available only for adding or removing data,
 
 Dictionary:
 ordered, unordered, changeable, doesn't allow duplication numbers, syntax {}, methods are available 
+=======
+unordered, unchangeable, doesn't allow duplication numbers, syntax {}, methods are not available
+>>>>>>> 713c7c1577f3cf15a375fcfabfae99eafc212c95
 
 """
