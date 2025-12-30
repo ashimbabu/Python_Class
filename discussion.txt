@@ -1,0 +1,9 @@
+Data Structure:
+
+List - List comprehension - []
+Tuples - ()
+Dictionaries - {}
+
+Sets - ()
+
+
