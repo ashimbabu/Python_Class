@@ -1,5 +1,20 @@
+or create a new repository on the command line
+echo "# Calculator" >> README.md
 
-for first time pushing codes in github:
+git init
+git add .
+
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/prabin2021/Calculator.git
+git push -u origin main
+…or push an existing repository from the command line
+git remote add origin https://github.com/prabin2021/Calculator.git
+git branch -M main
+git push -u origin main
+
+
+For first time pushing codes in github:
 
 git init
 git add .
@@ -9,16 +24,26 @@ git remote add origin [your github link]
 git push -u origin main
 
 
-regular code pushing
+Regular code pushing:
 
 git init
 git add .
-<<<<<<< HEAD
-git commit -m "Your message while pushing the codes in github"
+git commit -m " Your message while pushing the codes in github"
 git branch -m main
-git push -u origin main
-=======
-git commit -m "Your message while pushing the codes in github" "List and ListComprehension"
-git branch -m main
-git push -u original main
->>>>>>> 713c7c1577f3cf15a375fcfabfae99eafc212c95
+git push origin main
+
+
+git clone (project link) - to bring the project from repository to local device
+git status - to check the modified files after pushing the codes
+
+git ignore - it helps to ignore the unnecessary files, large files and secret files from pushing into the github
+
+Version Control:
+It is a system which tracks the changes in codes or projects.
+It also tracks the version of python,libraries,modules,packages,etc.
+It allows collaborations.
+It helps to recover the older versions or history.
+
+
+Git: tool
+Github: service
