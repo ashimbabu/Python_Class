@@ -12,7 +12,9 @@ import hashlib   # this library is used to encrypt the password in hashkey
 from tkinter  import *     # for gui (Graphical User Interface)
 from tkinter import messagebox
 from openpyxl import Workbook , load_workbook      # for manipulating the excel file
-file_path = "C:/Users/sigde/OneDrive/Desktop/Python/Major_Projects/Users.xlsx"
+
+file_path = "C:/Users/acer/Desktop/Python/Main_Projects/User.xlsx"
+
 def encrypt_password(password):   # to encrypt the user given password
     encrypted_password =  hashlib.sha256(password.encode()).hexdigest()
     return encrypted_password
