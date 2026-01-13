@@ -1,25 +1,44 @@
 """
 1. Add 2 and 2
+
 2. what is the result of 4.0 multiply by 3.0
+
 3. what if 15 is divided by 5
+
 4. is number 16 even or odd
+
 5. what is the result of 3.555 plus 7.9
+
 isdigit()
 split()
 
+
+#  what if 15 is divided by 5  
+    #  what if 15 is divided by 5  then add 5 to it.
+    #  Add 2 and 2   ->     [add,2,and,2]
+    #  what is the result of 35.55 plus 7.9  ->   [what,is,the,result,of,3.5.55,plus,7.9]
+    # what is the value of 3 power 4
+    # what is the square root of 30
+    #check if the number 6 is even or odd
+    # what is 30 % of 100
+
 """
+
 import speech_recognition as sr
 import pyttsx3
 import threading
 from tkinter import *
 import math
+
 tts_engine = pyttsx3.init()
 recognizer = sr.Recognizer()
 tts_engine.setProperty("rate",150)
 
+
 def speak(text):
     tts_engine.say(text)
     tts_engine.runAndWait()
+
 
 def listen():
     global stop_listening
@@ -48,11 +67,8 @@ def listen():
 
 
 
+
 def calculate(command):
-    #  what if 15 is divided by 5  
-    #  what if 15 is divided by 5  then add 5 to it.
-    #  Add 2 and 2   ->     [add,2,and,2]
-    #  what is the result of 3.555 plus 7.9  ->   [what,is,the,result,of,3.5.55,plus,7.9]
     
     operators = [word    for word in command  if word in ["+","-","*","/"]]
     if len(operators) > 1:
@@ -79,11 +95,88 @@ def calculate(command):
                numbers = [ float(n)    for n in command.split()    if n.replace('.',"",1).isdigit() ]
                result = numbers[0]/numbers[1] 
                
-            # sin, cos, tan
-            # even/odd
-            # prime/composite
-            # power
-            # square/square root
-            # cube cube root
-            # hcf / lcm
-            # percentage
+            elif "power" in command or "raised to" in command or "exponent" in command:
+                numbers = [ float(n)    for n in command.split()    if n.replace('.',"",1).isdigit() ]
+                result = math.pow(numbers[0],numbers[1])
+            
+            elif "sin" in command or "sine" in command:
+                numbers = [ float(n)    for n in command.split()    if n.replace('.',"",1).isdigit() ]
+                result = math.sin(math.radians(numbers[0]))
+               
+            elif "cos" in command or "cosine" in command:
+                numbers = [ float(n)    for n in command.split()    if n.replace('.',"",1).isdigit() ]
+                result = math.cos(math.radians(numbers[0]))
+                
+            elif "tan" in command or "tangent" in command:
+                numbers = [ float(n)    for n in command.split()    if n.replace('.',"",1).isdigit() ]
+                result = math.tan(math.radians(numbers[0]))
+            
+            elif "square root" in command:  
+                numbers = [ float(n)    for n in command.split()    if n.replace('.',"",1).isdigit() ]
+                result = math.sqrt(numbers[0])
+                
+            elif "square" in command:
+                numbers = [ float(n)    for n in command.split()    if n.replace('.',"",1).isdigit() ]
+                result = numbers[0] ** 2
+                
+            elif "cube root" in command:  
+                numbers = [ float(n)    for n in command.split()    if n.replace('.',"",1).isdigit() ]
+                result = numbers[0] ** (1/3)
+                
+            elif "cube" in command:
+                numbers = [ float(n)    for n in command.split()    if n.replace('.',"",1).isdigit() ]
+                result = numbers[0] ** 3
+            
+            elif "even" in command or "odd" in command:
+                numbers = [ float(n)    for n in command.split()    if n.replace('.',"",1).isdigit() ]
+                
+                if numbers[0] % 2 == 0 :
+                    result = "Even"
+                else:
+                    result = "Odd"
+            
+            elif "prime" in command or "composite" in command :
+                numbers = [ float(n)    for n in command.split()    if n.replace('.',"",1).isdigit() ]
+                if numbers[0] <= 1:
+                    result = "Neither prime nor composite"
+                else:
+                    is_prime = True
+                    for i in range(2,numbers[0]):   # start from 2 and go upto 5
+                        if numbers[0] % i == 0:
+                            is_prime = False
+                            break
+                    if is_prime:
+                        result = "Prime"
+                    else:
+                        result = "Composite"
+                        
+            elif "hcf" in command or "highest common factor" in command:
+                numbers = [ int(n)    for n in command.split()    if n.replace('.',"",1).isdigit() ]   
+                result = math.gcd(numbers[0],numbers[1])
+
+            elif "lcm" in command or "lowest common multiple" in command:
+                numbers = [ int(n)    for n in command.split()    if n.replace('.',"",1).isdigit() ]   
+                result = (numbers[0] * numbers[1]) // math.gcd(numbers[0],numbers[1])
+                
+            elif "percentage" in command or "percent" in command or "%" in command:
+
+                numbers = [float(n)    for n in command.split()    if n.replace('.',"",1).isdigit() ]
+                if len(numbers) ==2:
+                    # percentage = numbers[0]
+                    # total = numbers[1]
+                    percentage, total = numbers
+                    result = (percentage/100) * total
+                    
+                else:
+                    result = "Invalid data"
+            
+            else:
+                speak("Operation not supported")
+                result = "Unsupported operation"
+                    
+        except Exception :
+            speak("An error occurred during calculation")
+            result = "Error"
+    
+    speak(f"The result is {result}")
+    return result
