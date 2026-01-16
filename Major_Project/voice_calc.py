@@ -28,6 +28,7 @@ import speech_recognition as sr
 import pyttsx3
 import threading
 from tkinter import *
+from tkinter import scrolledtext,ttk
 import math
 
 tts_engine = pyttsx3.init()
@@ -46,26 +47,25 @@ def listen():
     with sr.Microphone() as source:
         while not stop_listening:
             try:
-                #gui ko logic
+                root.after(0, status_label.config, {'text':"Listening..."})
                 audio = recognizer.listen(source,timeout = 7,phrase_time_limit = 5)      # it listens the voice input of user
                 command = recognizer.recognize_google(audio)        # it converts the audio data into text data
-                # gui ko logic
+                status_label.config(text = f"You said: {command}")
                 result = calculate(command)
                 if result is not None:
-                    print("This is the result from calculate function")
-                    #gui logic - show the result to the user in gui
+                   display_text.insert(END, f"You said: {command}\n")
+                   display_text.insert(END, f"Result: {result}\n\n") 
+                    
             except sr.WaitTimeoutError:
                 print("Time out error")
-                # gui logic - show the time out error in gui
+                status_label.config(text ="Time out error. Please try again.")
             except sr.UnknownValueError:
                 print("I didnt understand")
-                # gui logic - show the error like "I did not understand"
+                status_label.config(text ="Sorry, I could not understand. Please try again.")
             except sr.RequestError:
                 print("You are offline")
-                # gui logic - show error like "your internet is not available"
+                status_label.config(text ="Sorry, I am unable to process your speech right now. Please check your internet connection.")
                 
-
-
 
 
 def calculate(command):
@@ -180,3 +180,51 @@ def calculate(command):
     
     speak(f"The result is {result}")
     return result
+
+
+def start_listening():
+    threading.Thread(target=listen).start()
+    
+def stop_listening():
+    global stop_listening
+    stop_listening = True
+    status_label.config(text ="Listening stopped.")
+
+def clear_conversation():
+    display_text.delete(1.0, END)
+    status_label.config(text ="Conversation cleared.")
+
+
+root = Tk()
+root.title("Ashim Babu Shrestha Voice Calculator")
+root.geometry("700x550")
+root.resizable(False,False)
+root.configure(bg = "#C1D7ED" )
+
+style = ttk.Style()
+style.theme_use("clam")
+style.configure("TButton", font = ("Arial",12,"bold"),background = "#EEEC46",foreground = "BLACK", padding = 10)
+style.map("TButton", background = [("active","#D74519")])
+style.configure("TLabel", background = "CYAN", foreground = "BLACK", font = ("Arial",12,"bold"))
+style.configure("TScrolledText", background = "WHITE", foreground = "BLACK", font = ("Arial",12), padding = 10)        
+
+display_text = scrolledtext.ScrolledText(root, width = 80, height = 20, wrap = WORD, background = "#F5F4E7", foreground = "BLACK", font = ("Arial",12))
+display_text.pack(pady = 10)
+
+button_frame = ttk.Frame(root)
+button_frame.pack()
+
+start_button = ttk.Button(button_frame, text = "Start Listening", command = start_listening)
+start_button.pack(side = LEFT, padx = 10)
+
+start_button = ttk.Button(button_frame, text = "Stop Listening", command = stop_listening)
+start_button.pack(side = LEFT, padx = 10)
+
+start_button = ttk.Button(button_frame, text = "Clear Conversation", command = clear_conversation)
+start_button.pack(side = LEFT, padx = 10)
+
+status_label = ttk.Label(root, text = "Welcome to Ashim Babu Shrestha Voice Calculator")
+status_label.pack(pady = 20)
+
+speak("Welcome to Ashim Babu Shrestha Voice Calculator. Click on Start Listening to begin.")
+root.mainloop()
