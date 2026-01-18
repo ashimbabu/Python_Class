@@ -1,19 +1,30 @@
 """
+How to run this project:
+
+1. Create a virtual environment:
+python -m venv [your_env_name]      (create a virtual environment)
+your_env_name\Scripts\activate      (for Windows)
+your_env_name/bin/activate          (for MacOS)
+
+
+2. Install the required libraries
+pip install speechrecognition
+pip install pyttsx3
+pip install threading
+pip install tkinter
+
+
+3. Run the voice_calc.py file
+python voice_calc.py
+
+Sample Voice Commands:
+
 1. Add 2 and 2
-
 2. what is the result of 4.0 multiply by 3.0
-
 3. what if 15 is divided by 5
-
 4. is number 16 even or odd
-
 5. what is the result of 3.555 plus 7.9
-
-isdigit()
-split()
-
-
-#  what if 15 is divided by 5  
+    #what if 15 is divided by 5  
     #  what if 15 is divided by 5  then add 5 to it.
     #  Add 2 and 2   ->     [add,2,and,2]
     #  what is the result of 35.55 plus 7.9  ->   [what,is,the,result,of,3.5.55,plus,7.9]
@@ -196,7 +207,7 @@ def clear_conversation():
 
 
 root = Tk()
-root.title("Ashim Babu Shrestha Voice Calculator")
+root.title("Voice Calculator")
 root.geometry("700x550")
 root.resizable(False,False)
 root.configure(bg = "#C1D7ED" )
@@ -223,8 +234,8 @@ start_button.pack(side = LEFT, padx = 10)
 start_button = ttk.Button(button_frame, text = "Clear Conversation", command = clear_conversation)
 start_button.pack(side = LEFT, padx = 10)
 
-status_label = ttk.Label(root, text = "Welcome to Ashim Babu Shrestha Voice Calculator")
+status_label = ttk.Label(root, text = "Welcome to Voice Calculator")
 status_label.pack(pady = 20)
 
-speak("Welcome to Ashim Babu Shrestha Voice Calculator. Click on Start Listening to begin.")
+speak("Welcome to Voice Calculator. Click on Start Listening to begin.")
 root.mainloop()
